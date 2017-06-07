@@ -98,32 +98,8 @@ while True:
             hrate=int(motes[i].observe(2)[0])/30+50
             line1=line1+' '+str(hrate)+'\n'
             tempreturereading=motes[i].get(13)[0]
-            line1=line1+' '+tempreturereading+'\n'
-            line1=line1+' '+motes[i].get(16)[0]+'\n'
-            line1=line1+' '+motes[i].get(12)[0]+'\n'
             if(abs(float(motes[i].get(18)[0])-x)>0.7): pushup+=1
             x=float(motes[i].get(18)[0])
-            if hrate<=500:
-                if gledstate==0:
-                    motes[i].post(9,'1')
-                    gledstate=1
-                if rledstate==1:
-                    motes[i].post(10,'1')
-                    rledstate=0
-            if 500<hrate<3000:
-                if gledstate==1:
-                    motes[i].post(9,'1')
-                    gledstate=0
-                if rledstate==1:
-                    motes[i].post(10,'1')
-                    rledstate=0
-            if hrate>3000:
-                if gledstate==1:
-                    motes[i].post(9,'1')
-                    gledstate=0
-                if rledstate==0:
-                    motes[i].post(10,'1')
-                    rledstate=1
         if motes[i].ip=='aaaa::212:4b00:c66:f982':
             #line2=line2+' mote2: '+motes[i].observe(0)[0]
             line2=' '+motes[i].observe(0)[0]+'\n'
