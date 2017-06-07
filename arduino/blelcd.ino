@@ -19,24 +19,24 @@ String str="";
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  BTSerial.begin(115200); 
+  BTSerial.begin(115200);
 
   TFTscreen.begin();
   tftinit();
   BTSerial.print("root\n");
-  delay(1000);
+  delay(1500);
   BTSerial.print("password\n");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
  // set the font color
- 
+
  if(BTSerial.available()){
 // erase the text you just wrote
   tftwrite(sensorval,0,0,0);
   str="";
-  while (BTSerial.available()){  
+  while (BTSerial.available()){
       charin=BTSerial.read();
       str+=String(charin);
     }
@@ -69,7 +69,7 @@ void tftinit(){
   TFTscreen.setTextSize(1);
 }
 void drawgraph(int sensor){
-  sensor = map(sensor, 0, 1023, 0, TFTscreen.height()/9);
+  sensor = map(sensor, 50, 140, 0, TFTscreen.height()/3);
   TFTscreen.stroke(250, 180, 10);
   TFTscreen.line(xPos, TFTscreen.height() - sensor, xPos, TFTscreen.height());
 
@@ -83,4 +83,3 @@ void drawgraph(int sensor){
     xPos++;
   }
 }
-
